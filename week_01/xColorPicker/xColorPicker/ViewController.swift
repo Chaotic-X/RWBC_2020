@@ -62,11 +62,12 @@ class ViewController: UIViewController {
         blueBrightnessSlider.value = 0.0
         color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         view.backgroundColor = UIColor.white
+        colorNameLabel.text = "Custom Color Name"
         updateLabels()
     }
     
     @IBAction func setColorNameButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Color Name", message: "Type a name for your color", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Custom Color Name", message: "Type a name for your color", preferredStyle: .alert)
         alertController.addTextField(configurationHandler: {(textField) in
             textField.placeholder = "Name it anything"
         })
@@ -74,7 +75,7 @@ class ViewController: UIViewController {
         let nameAction = UIAlertAction(title: "Name IT!", style: .default) { (_) in
             let colorName = alertController.textFields?.first?.text
             self.colorNameLabel.text = colorName
-            self.color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+//            self.color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
             self.view.backgroundColor = self.setUIColor()
         }
         alertController.addAction(cancelAction)

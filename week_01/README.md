@@ -1,5 +1,8 @@
 # RW Boocamp 2020 - week 01 Homework - ColorPicker
 
+![Alex]
+(https://github.com/Chaotic-X/RWBC_2020/blob/master/images/Alex.jpg)
+
 name: **Alex Lundquist**
 
 Discord: **TK: Alex Lundquist**

@@ -35,6 +35,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         color.layer.cornerRadius = 10
         color.clipsToBounds = true
+//        redhsbLabel.layer.cornerRadius = 5
+//        redhsbLabel.clipsToBounds = true
+//        greensaturationLabel.layer.cornerRadius = 5
+//        greensaturationLabel.clipsToBounds = true
+//        bluebrightnessLabel.layer.cornerRadius = 5
+//        bluebrightnessLabel.clipsToBounds = true
+//        rhValueLabel.layer.cornerRadius = 10
+//        rhValueLabel.clipsToBounds = true
+//        gsValueLabel.layer.cornerRadius = 10
+//        gsValueLabel.clipsToBounds = true
+//        bbValueLabel.layer.cornerRadius = 10
+//        bbValueLabel.clipsToBounds = true
         resetColorButton()
     }
     

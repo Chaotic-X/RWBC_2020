@@ -26,9 +26,10 @@ class ViewController: UIViewController {
     var redHueValue = 0
     var greenSaturationValue = 0
     var blueBrightnessValue = 0
-    var redCGFloat: CGFloat = 0.0
-    var greenCGFloat: CGFloat = 0.0
-    var blueCGFloat: CGFloat = 0.0
+    var redHueCGFloat: CGFloat = 0.0
+    var greenSaturationCGFloat: CGFloat = 0.0
+    var blueBrightnessCGFloat: CGFloat = 0.0
+    var currentSegment = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,31 +37,62 @@ class ViewController: UIViewController {
         color.clipsToBounds = true
         resetColorButton()
     }
-
+    
     @IBAction func redHueSliderMoved(_ rhslider: UISlider) {
-        rhValueLabel.text = "\(sliderRoundedIntValue(rhslider))"
-        redHueSlider.minimumTrackTintColor = UIColor(red: setRedColor(), green: 0, blue: 0, alpha: 1.0)
+        if currentSegment == 0 {
+            rhValueLabel.text = "\(sliderRoundedIntValue(rhslider))"
+            redHueSlider.minimumTrackTintColor = UIColor(red: setRedColor(), green: 0, blue: 0, alpha: 1.0)
+            redHueSlider.thumbTintColor = UIColor(red: setRedColor(), green: 0, blue: 0, alpha: 1.0)
+        }else{
+            //Need HSB
+            rhValueLabel.text = "\(sliderRoundedIntValue(rhslider))"
+            redHueSlider.minimumTrackTintColor = UIColor(red: setRedColor(), green: 0, blue: 0, alpha: 1.0)
+        }
         setSmallBoxBackgroundColor()
-        
     }
     
     @IBAction func greenSaturationSliderMoved(_ gsslider: UISlider) {
-        gsValueLabel.text = "\(sliderRoundedIntValue(gsslider))"
-        greenSaturationSlider.minimumTrackTintColor = UIColor(red: 0, green: setGreenColor(), blue: 0, alpha: 1.0)
+        if currentSegment == 0 {
+            gsValueLabel.text = "\(sliderRoundedIntValue(gsslider))"
+            greenSaturationSlider.minimumTrackTintColor = UIColor(red: 0, green: setGreenColor(), blue: 0, alpha: 1.0)
+            greenSaturationSlider.thumbTintColor = UIColor(red: 0, green: setGreenColor(), blue: 0, alpha: 1.0)
+        }else{
+            //HSB
+            gsValueLabel.text = "\(sliderRoundedIntValue(gsslider))"
+            greenSaturationSlider.minimumTrackTintColor = UIColor(red: 0, green: setGreenColor(), blue: 0, alpha: 1.0)
+        }
         setSmallBoxBackgroundColor()
     }
     
     @IBAction func blueBrightnessSliderMoved(_ bbslider: UISlider) {
-        bbValueLabel.text = "\(sliderRoundedIntValue(bbslider))"
-        blueBrightnessSlider.minimumTrackTintColor = UIColor(red: 0, green: 0, blue: setBlueColor(), alpha: 1.0)
+        if currentSegment == 0 {
+            bbValueLabel.text = "\(sliderRoundedIntValue(bbslider))"
+            blueBrightnessSlider.minimumTrackTintColor = UIColor(red: 0, green: 0, blue: setBlueColor(), alpha: 1.0)
+            blueBrightnessSlider.thumbTintColor = UIColor(red: 0, green: 0, blue: setBlueColor(), alpha: 1.0)
+        }else{
+            //HSB
+            bbValueLabel.text = "\(sliderRoundedIntValue(bbslider))"
+            blueBrightnessSlider.minimumTrackTintColor = UIColor(red: 0, green: 0, blue: setBlueColor(), alpha: 1.0)
+        }
         setSmallBoxBackgroundColor()
     }
     
     @IBAction func resetColorButton(){
-        redHueSlider.value = 0.0
-        greenSaturationSlider.value = 0.0
-        blueBrightnessSlider.value = 0.0
-        color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        if currentSegment == 0 {
+            redHueSlider.value = 0.0
+            redHueSlider.thumbTintColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
+            greenSaturationSlider.value = 0.0
+            greenSaturationSlider.thumbTintColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 1.0)
+            blueBrightnessSlider.value = 0.0
+            blueBrightnessSlider.thumbTintColor = UIColor(red: 0, green: 0, blue: 1.0, alpha: 1.0)
+            color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        }else{
+            //Need HSB
+            redHueSlider.value = 0.0
+            greenSaturationSlider.value = 0.0
+            blueBrightnessSlider.value = 0.0
+            color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        }
         view.backgroundColor = UIColor.white
         colorNameLabel.text = "Custom Color Name"
         updateLabels()
@@ -75,12 +107,25 @@ class ViewController: UIViewController {
         let nameAction = UIAlertAction(title: "Name IT!", style: .default) { (_) in
             let colorName = alertController.textFields?.first?.text
             self.colorNameLabel.text = colorName
-//            self.color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            //            self.color.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
             self.view.backgroundColor = self.setUIColor()
         }
         alertController.addAction(cancelAction)
         alertController.addAction(nameAction)
         present(alertController, animated: true, completion: nil)
+    }
+    @IBAction func segmentedControlTapped(_ sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex
+        {
+        case 0:
+            self.currentSegment = 0
+            updateLabels()
+        case 1:
+            self.currentSegment = 1
+            updateLabels()
+        default:
+            break
+        }
     }
     
     func sliderRoundedIntValue(_ slider: UISlider) ->Int{
@@ -92,28 +137,53 @@ class ViewController: UIViewController {
         let roundedValue = slider.value.rounded()
         return roundedValue
     }
-    func setRedColor()->CGFloat{
-        redCGFloat = CGFloat(sliderRoundedFloatValue(redHueSlider))/255.0
-        return redCGFloat
-    }
-    func setGreenColor()->CGFloat{
-        greenCGFloat = CGFloat(sliderRoundedFloatValue(greenSaturationSlider))/255.0
-        return greenCGFloat
-    }
-    func setBlueColor()->CGFloat{
-        blueCGFloat = CGFloat(sliderRoundedFloatValue(blueBrightnessSlider))/255.0
-        return blueCGFloat
-    }
+
     func setSmallBoxBackgroundColor(){
         color.backgroundColor = setUIColor()
     }
     func setUIColor()->UIColor{
-        return UIColor(red: setRedColor(), green: setGreenColor(), blue: setBlueColor(), alpha: 1.0)
+        if currentSegment == 0 {
+            return UIColor(red: setRedColor(), green: setGreenColor(), blue: setBlueColor(), alpha: 1.0)
+        }else{
+            //need HSBValues
+            return UIColor(red: setRedColor(), green: setGreenColor(), blue: setBlueColor(), alpha: 1.0)
+        }
     }
     
     func updateLabels(){
-        rhValueLabel.text = "\(redHueValue)"
-        gsValueLabel.text = "\(greenSaturationValue)"
-        bbValueLabel.text = "\(blueBrightnessValue)"
+        if currentSegment == 0 {
+            rhValueLabel.text = "\(redHueValue)"
+            gsValueLabel.text = "\(greenSaturationValue)"
+            bbValueLabel.text = "\(blueBrightnessValue)"
+        }else{
+            //HSB Vlaues
+            rhValueLabel.text = "\(redHueValue)"
+            gsValueLabel.text = "\(greenSaturationValue)"
+            bbValueLabel.text = "\(blueBrightnessValue)"
+        }
+    }
+    func setRedColor()->CGFloat{
+        redHueCGFloat = CGFloat(sliderRoundedFloatValue(redHueSlider))/255.0
+        return redHueCGFloat
+    }
+    func setGreenColor()->CGFloat{
+        greenSaturationCGFloat = CGFloat(sliderRoundedFloatValue(greenSaturationSlider))/255.0
+        return greenSaturationCGFloat
+    }
+    func setBlueColor()->CGFloat{
+        blueBrightnessCGFloat = CGFloat(sliderRoundedFloatValue(blueBrightnessSlider))/255.0
+        return blueBrightnessCGFloat
+    }
+    func setHue()->CGFloat{
+        redHueCGFloat = CGFloat(sliderRoundedFloatValue(redHueSlider))/255.0
+        return redHueCGFloat
+    }
+    func setSaturation()->CGFloat{
+        greenSaturationCGFloat = CGFloat(sliderRoundedFloatValue(greenSaturationSlider))/255.0
+        return greenSaturationCGFloat
+    }
+    func setBrightness()->CGFloat{
+        blueBrightnessCGFloat = CGFloat(sliderRoundedFloatValue(blueBrightnessSlider))/255.0
+        return blueBrightnessCGFloat
     }
 }

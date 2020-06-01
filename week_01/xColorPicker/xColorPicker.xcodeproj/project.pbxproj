@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FAF377E12480B89B00B4E11B /* xColorPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xColorPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAF377E12480B89B00B4E11B /* xColor Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xColor Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF377E42480B89C00B4E11B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF377E62480B89C00B4E11B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FAF377E82480B89C00B4E11B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		FAF377E22480B89B00B4E11B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FAF377E12480B89B00B4E11B /* xColorPicker.app */,
+				FAF377E12480B89B00B4E11B /* xColor Picker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,7 +99,7 @@
 			);
 			name = xColorPicker;
 			productName = xColorPicker;
-			productReference = FAF377E12480B89B00B4E11B /* xColorPicker.app */;
+			productReference = FAF377E12480B89B00B4E11B /* xColor Picker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -308,9 +308,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexlundquist.xColorPicker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "xColor Picker";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -326,9 +326,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexlundquist.xColorPicker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "xColor Picker";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -25,5 +25,5 @@ _Hobbies:_
 **Love to draw, paint, sketch. If I am not being creative in some way, my wife says I get cranky :/ So I always try to be doing somethign artistic. I do contract design and illstration**
 	
 _Interests:_   
-**Tech, computers, Anime, Japanese (lived there for 2 years, forgotten a good portion of it. Was fluent at one point)**
+**Art, Tech, computers, Anime, Japan (lived there for 2 years, 20 years ago. I was fluent in Japanese at one point. However, I have forgotten a good portion of it. )**
 

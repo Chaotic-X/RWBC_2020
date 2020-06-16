@@ -34,30 +34,29 @@ import UIKit
 
 protocol Theme {
   var backgroundColor: UIColor {get set}
+  var heading: UIColor {get set}
   var textColor: UIColor {get set}
   var borderColor: UIColor {get set}
+  var borderWidth: CGFloat {get set}
   var widgetBackgroundColor: UIColor {get set}
 }
 
 struct LightTheme: Theme {
-  var textColor: UIColor = .red
-  
-  var borderColor: UIColor = .blue
-  
-  var widgetBackgroundColor: UIColor = .green
-  
-  var backgroundColor: UIColor = .black
+  var backgroundColor: UIColor = .xLightBG
+  var heading: UIColor = .rayDark
+  var textColor: UIColor = .rayDark
+  var borderColor: UIColor = .rayGreen
+  var borderWidth: CGFloat = 1.5
+  var widgetBackgroundColor: UIColor = .xlightWidget
 }
 
 struct DarkTheme: Theme {
-  var backgroundColor: UIColor = .white
-  
-  var textColor: UIColor = .green
-  
-  var borderColor: UIColor = .orange
-  
-  var widgetBackgroundColor: UIColor = .red
-  
+  var backgroundColor: UIColor = .xDarkBG
+  var heading: UIColor = .rayLight
+  var textColor: UIColor = .rayLight
+  var borderColor: UIColor = .rayGreen
+  var borderWidth: CGFloat = 1.5
+  var widgetBackgroundColor: UIColor = .xdarkWidget
 }
 protocol Themeable {
   func registerForTheme()

@@ -3,6 +3,7 @@
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -119,6 +120,8 @@
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="kW6-Ms-UCP">
                                 <rect key="frame" x="343" y="6.6666666666666679" width="51" height="31.000000000000004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" name="x-blueDarkBG"/>
+                                <color key="thumbTintColor" name="x-pastelgreen"/>
                                 <connections>
                                     <action selector="switchPressed:" destination="5r6-eT-R08" eventType="valueChanged" id="enD-a4-1Dd"/>
                                 </connections>
@@ -141,4 +144,12 @@
             <point key="canvasLocation" x="1439" y="38"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="x-blueDarkBG">
+            <color red="0.098666958041958047" green="0.18481638667482525" blue="0.31807255244755245" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="x-pastelgreen">
+            <color red="0.69168029564685318" green="0.78939403936083918" blue="0.70555616253846143" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

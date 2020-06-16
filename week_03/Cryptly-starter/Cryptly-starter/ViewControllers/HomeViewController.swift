@@ -67,6 +67,7 @@ class HomeViewController: UIViewController{
   }
   func setupViews(){
     
+    view.backgroundColor = .xLightBG
     view1.addBackGroundColor()
     view1.addAccentBorder()
     view1.addDropShawdow()
@@ -90,29 +91,35 @@ class HomeViewController: UIViewController{
   }
   
   func setView1Data() {
-    if let unWrappedCurrency = cryptoData {
-      let cryptoName: [String] = unWrappedCurrency.map{ currency in currency.name }
-      let newCrypto = cryptoName.joined(separator: ", ")
-      view1TextLabel.text = newCrypto
+    if let wrappedCrypto = cryptoData {
+
+      let currencyName = wrappedCrypto.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
+
+      view1TextLabel.text = currencyName
     }
-    
   }
   
   func setView2Data() {
-    
+
+    guard let cryptoData = cryptoData else {return}
+    let increasedCurrencies = cryptoData.filter{ $0.currentValue > $0.previousValue}.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
+    view2TextLabel.text = increasedCurrencies
   }
-  
   func setView3Data() {
-    
-  }
+      if let wrappedCrypto = cryptoData{
+        let currencyName = wrappedCrypto.filter{$0.currentValue < $0.previousValue}.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
+        view3TextLabel.text = currencyName
+      }
+    }
+
   
   @IBAction func switchPressed(_ sender: Any) {
     if themeSwitch.isOn {
-      ThemeManager.shared.set(theme: LightTheme())
-      print("Its Light")
-    }else{
       ThemeManager.shared.set(theme: DarkTheme())
       print("Its Dark")
+    }else{
+      ThemeManager.shared.set(theme: LightTheme())
+      print("Its Light")
     }
   }
 }
@@ -135,9 +142,13 @@ extension HomeViewController: Themeable{
       view3.backgroundColor = currentTheme.widgetBackgroundColor
       
       view1.layer.borderColor = currentTheme.borderColor.cgColor
+      view1.layer.borderWidth = currentTheme.borderWidth
       view2.layer.borderColor = currentTheme.borderColor.cgColor
+      view2.layer.borderWidth = currentTheme.borderWidth
       view3.layer.borderColor = currentTheme.borderColor.cgColor
+      view3.layer.borderWidth = currentTheme.borderWidth
       
+      headingLabel.textColor = currentTheme.heading
       view1TextLabel.textColor = currentTheme.textColor
       view2TextLabel.textColor = currentTheme.textColor
       view3TextLabel.textColor = currentTheme.textColor

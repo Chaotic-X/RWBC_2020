@@ -34,23 +34,31 @@ import UIKit
 
 extension UIView{
   
-  func addBackGroundColor(color: UIColor = .systemGray6){
+  func addBackGroundColor(color: UIColor = .xlightWidget){
     self.layer.backgroundColor = color.cgColor
   }
   func addCornerRadius(_ radius: CGFloat = 6){
-//    self.layer.masksToBounds = true
     self.layer.cornerRadius = radius
   }
-  
-  func addAccentBorder(width: CGFloat = 1.0 , color: UIColor = .lightGray){
+  func addAccentBorder(width: CGFloat = 1.5 , color: UIColor = .rayGreen){
     self.layer.borderWidth = width
     self.layer.borderColor = color.cgColor
   }
-  
-  func addDropShawdow(width: Int = 0, height: Int = 3, color: UIColor = .black, radius: CGFloat = 4, opacity: Float = 0.9){
+  func addDropShawdow(width: Int = 0, height: Int = 3, color: UIColor = .xDarkBG, radius: CGFloat = 4, opacity: Float = 0.9){
     self.layer.shadowOffset = CGSize(width: width, height: height)
     self.layer.shadowColor = color.withAlphaComponent(0.9).cgColor
     self.layer.shadowRadius = radius
     self.layer.shadowOpacity = opacity
   }
+}
+
+extension UIColor {
+  static let xLightBG = UIColor(named: "x-blueLightBG")!
+  static let xDarkBG = UIColor(named: "x-blueDarkBG")!
+  static let xdarkWidget = UIColor(named: "x-greendusk")!
+  static let xlightWidget = UIColor(named: "x-pastelgreen")!
+  static let rayDark = UIColor(named: "rw-dark")!
+  static let rayLight = UIColor(named: "rw-light")!
+  static let rayGreen = UIColor(named: "rw-green")!
+  static let hotPink = UIColor(named: "hotPink")!
 }

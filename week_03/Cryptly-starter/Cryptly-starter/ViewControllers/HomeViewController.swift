@@ -91,25 +91,20 @@ class HomeViewController: UIViewController{
   }
   
   func setView1Data() {
-    if let wrappedCrypto = cryptoData {
-
+    guard let wrappedCrypto = cryptoData else {return}
       let currencyName = wrappedCrypto.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
-
       view1TextLabel.text = currencyName
-    }
   }
   
   func setView2Data() {
-
-    guard let cryptoData = cryptoData else {return}
-    let increasedCurrencies = cryptoData.filter{ $0.currentValue > $0.previousValue}.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
+    guard let wrappedCrypto = cryptoData else {return}
+    let increasedCurrencies = wrappedCrypto.filter{ $0.currentValue > $0.previousValue}.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
     view2TextLabel.text = increasedCurrencies
   }
   func setView3Data() {
-      if let wrappedCrypto = cryptoData{
-        let currencyName = wrappedCrypto.filter{$0.currentValue < $0.previousValue}.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
-        view3TextLabel.text = currencyName
-      }
+      guard let wrappedCrypto = cryptoData else {return}
+        let decreasedCurrencies = wrappedCrypto.filter{$0.currentValue < $0.previousValue}.reduce(""){$0 == "" ? $1.name : $0 + ", " + $1.name}
+        view3TextLabel.text = decreasedCurrencies
     }
 
   

@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     }else{
       person2.items.updateValue(slider.value, forKey: currentItem)
     }
-    slider.value = 0.5
+    slider.value = 2.5
     roundCount()
     updateDateUI()
   }

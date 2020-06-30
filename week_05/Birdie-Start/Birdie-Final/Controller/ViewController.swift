@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   
   @IBOutlet weak var tableview: UITableView!
-  weak var selectedImage: UIImage?
+  public var selectedImage: UIImage?
   //  var imageDelegate: SelectedImageDelegate?
   var posts = MediaPostsHandler.shared
   var postsViewModel = MediaPostsViewModel.shared
@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       picker.sourceType = .photoLibrary
       picker.modalPresentationStyle = .fullScreen
       present(picker, animated: true, completion: nil)
-      }
+    }
   }
   
   //MARK: - TableView DataSource and Delegate methods.
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   //MARK: - Post Alert Controller
   func newPost(caller: Any){
     let postType:Int = caller as! Int
-    let newPostAlertController = UIAlertController(title: selectedImage == nil ? "New Text Post" : "New Image Post", message: nil, preferredStyle: .alert)
+    let newPostAlertController = UIAlertController(title: self.selectedImage == nil ? "New Text Post" : "New Image Post", message: nil, preferredStyle: .alert)
     var usernameTextField = UITextField()
     newPostAlertController.addTextField { (usernameTF) in
       usernameTF.placeholder = "Enter UserName..."
@@ -118,10 +118,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    if let photo = info[.originalImage] as? UIImage {
+    if let photo = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       self.selectedImage = photo
+      dismiss(animated: true, completion: nil)
     }
-    dismiss(animated: true, completion: nil)
     newPost(caller: 1)
   }
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

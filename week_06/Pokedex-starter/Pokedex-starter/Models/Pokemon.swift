@@ -39,9 +39,3 @@ struct Pokemon: Hashable {
   let weight: Int
   let height: Int
 }
-
-//class Poke {
-//
-//  let pokemons: [Pokemon]
-//  
-//}

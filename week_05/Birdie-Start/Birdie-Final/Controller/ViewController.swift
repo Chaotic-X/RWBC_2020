@@ -63,7 +63,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   //MARK: - Post Alert Controller
   func newPost(caller: Any){
-    let postType:Int = caller as! Int
+    guard let postType:Int = caller as? Int else {
+      fatalError("Die a horrible failed INT death")
+    }
     let newPostAlertController = UIAlertController(title: self.selectedImage == nil ? "New Text Post" : "New Image Post", message: nil, preferredStyle: .alert)
     var usernameTextField = UITextField()
     newPostAlertController.addTextField { (usernameTF) in
